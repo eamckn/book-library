@@ -15,8 +15,15 @@ body, html {
 
 .sidebar {
     flex: auto;
-
     width: 20%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar button.new-book {
+    width: 60%;
+    align-self: center;
 }
 
 .library-display-wrapper {
