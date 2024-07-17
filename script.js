@@ -2,7 +2,7 @@
 
 // DOM element selectors
 
-const libraryDisplay = document.querySelector("library-display-wrapper");
+const libraryDisplay = document.querySelector(".library-display-wrapper");
 
 // Initialize library, i.e an array of books
 const myLibrary = [];
@@ -26,7 +26,18 @@ function addBookToLibrary() {
 }
 
 function displayBooksInLibrary(myLibrary) {
-    for (book in myLibrary) {
-        libraryDisplay.appendChild(book);
+    for (const book of myLibrary) {
+        const newBook = document.createElement("div");
+        newBook.className = "book";
+        // console.log(typeof(book))
+        for (const prop in book) {
+            // console.log(`${prop}: ${book[prop]}`);
+            const newLine = document.createElement("p");
+            newLine.textContent = `${prop}: ${book[prop]}`;
+            newBook.appendChild(newLine);
+        }
+        libraryDisplay.appendChild(newBook);
     }
 }
+
+myLibrary.push(new Book("My book", "Eamon McKeon", 100, "yes"));

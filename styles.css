@@ -22,8 +22,8 @@
 
 .library-display-wrapper .book {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
 
     background-color: grey;
     border: 1px solid black;
