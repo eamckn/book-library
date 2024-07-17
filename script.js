@@ -2,7 +2,7 @@
 
 // DOM element selectors
 
-const libraryDisplay = document.querySelector("'library-display-wrapper");
+const libraryDisplay = document.querySelector("library-display-wrapper");
 
 // Initialize library, i.e an array of books
 const myLibrary = [];
