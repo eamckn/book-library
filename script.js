@@ -5,6 +5,9 @@
 const libraryDisplay = document.querySelector(".library-display-wrapper");
 const addBookButton = document.querySelector(".add-book");
 
+// Event listeners
+addBookButton.addEventListener("click", makeNewBook);
+
 // Initialize library, i.e an array of books
 const myLibrary = [];
 
@@ -52,9 +55,7 @@ function makeNewBook(event) {
     event.preventDefault();
 }
 
-
+// Initialize some books in myLibrary
 myLibrary.push(new Book("My book", "Eamon McKeon", 100, "yes"));
 myLibrary.push(new Book("Justin's book", "Justin Lee", 350, "no"));
 myLibrary.push(new Book("Avery's book", "Avery Coreschi", 200, "yes"));
-
-addBookButton.addEventListener("click", makeNewBook);
