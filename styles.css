@@ -42,6 +42,7 @@ body, html {
 }
 
 .library-display-wrapper .book {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;

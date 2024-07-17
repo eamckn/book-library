@@ -55,3 +55,14 @@ function makeNewBook(event) {
 myLibrary.push(new Book("My book", "Eamon McKeon", 100, "yes"));
 myLibrary.push(new Book("Justin's book", "Justin Lee", 350, "no"));
 myLibrary.push(new Book("Avery's book", "Avery Coreschi", 200, "yes"));
+
+displayBooksInLibrary();
+
+/* 
+For adding a remove book button for each book:
+1. Assign each book an ID that corresponds to its index in the array when it's made
+1. Create a button within the book div when it's added, same ID as its book
+2. Target it within the DOM
+2. Position it roughly where I want it
+3. Add an event listener to it to remove the book
+*/
