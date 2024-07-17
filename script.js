@@ -18,5 +18,9 @@ function addBookToLibrary() {
     let pages = prompt("How many pages is the book? (please enter a number)");
     let read = prompt("Have you had this book already? Please answer 'yes' or 'no.'");
     let newBook = new Book(title, author, pages, read);
-    myLibrary.push(newBook)
+    myLibrary.push(newBook);
+}
+
+function displayBooksInLibrary(myLibrary) {
+
 }
