@@ -3,6 +3,7 @@
 // DOM element selectors
 
 const libraryDisplay = document.querySelector(".library-display-wrapper");
+const addBookButton = document.querySelector(".add-book");
 
 // Initialize library, i.e an array of books
 const myLibrary = [];
@@ -40,6 +41,20 @@ function displayBooksInLibrary() {
     }
 }
 
+function makeNewBook(event) {
+    let title = document.querySelector("input#title").value;
+    let author = document.querySelector("input#author").value;
+    let pages = document.querySelector("input#pages").value;
+    let read = document.querySelector("input[name = 'has_read']:checked").value;
+
+    myLibrary.push(new Book(title, author, pages, read));
+
+    event.preventDefault();
+}
+
+
 myLibrary.push(new Book("My book", "Eamon McKeon", 100, "yes"));
 myLibrary.push(new Book("Justin's book", "Justin Lee", 350, "no"));
 myLibrary.push(new Book("Avery's book", "Avery Coreschi", 200, "yes"));
+
+addBookButton.addEventListener("click", makeNewBook);
