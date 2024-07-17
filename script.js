@@ -1,5 +1,9 @@
 // JS for book library project
 
+// DOM element selectors
+
+const libraryDisplay = document.querySelector("'library-display-wrapper");
+
 // Initialize library, i.e an array of books
 const myLibrary = [];
 
@@ -22,5 +26,7 @@ function addBookToLibrary() {
 }
 
 function displayBooksInLibrary(myLibrary) {
-
+    for (book in myLibrary) {
+        libraryDisplay.appendChild(book);
+    }
 }
