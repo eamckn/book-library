@@ -20,11 +20,7 @@ function Book(title, author, pages, read) {
 }
 
 // Function definitions
-function addBookToLibrary() {
-    let title = prompt("What is the title of the book you'd like to add to your library?");
-    let author = prompt("What's the name of the author?");
-    let pages = prompt("How many pages is the book? (please enter a number)");
-    let read = prompt("Have you had this book already? Please answer 'yes' or 'no.'");
+function addBookToLibrary(title, author, pages, read) {
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
 }
@@ -50,7 +46,7 @@ function makeNewBook(event) {
     let pages = document.querySelector("input#pages").value;
     let read = document.querySelector("input[name = 'has_read']:checked").value;
 
-    myLibrary.push(new Book(title, author, pages, read));
+    addBookToLibrary(title, author, pages, read);
 
     event.preventDefault();
 }
