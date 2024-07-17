@@ -25,7 +25,7 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
 }
 
-function displayBooksInLibrary(myLibrary) {
+function displayBooksInLibrary() {
     for (const book of myLibrary) {
         const newBook = document.createElement("div");
         newBook.className = "book";
@@ -41,3 +41,5 @@ function displayBooksInLibrary(myLibrary) {
 }
 
 myLibrary.push(new Book("My book", "Eamon McKeon", 100, "yes"));
+myLibrary.push(new Book("Justin's book", "Justin Lee", 350, "no"));
+myLibrary.push(new Book("Avery's book", "Avery Coreschi", 200, "yes"));
