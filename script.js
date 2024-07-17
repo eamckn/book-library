@@ -29,6 +29,7 @@ function displayBooksInLibrary() {
     for (const book of myLibrary) {
         const newBook = document.createElement("div");
         newBook.className = "book";
+        newBook.setAttribute("id", `${myLibrary.indexOf(book)}`);
         // console.log(typeof(book))
         for (const prop in book) {
             // console.log(`${prop}: ${book[prop]}`);
