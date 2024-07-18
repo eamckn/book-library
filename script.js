@@ -30,6 +30,10 @@ function displayBooksInLibrary() {
         const newBook = document.createElement("div");
         newBook.className = "book";
         newBook.setAttribute("id", `${myLibrary.indexOf(book)}`);
+        const removeBookButton = document.createElement("button");
+        removeBookButton.textContent = "Remove Book";
+        newBook.appendChild(removeBookButton);
+        removeBookButton.setAttribute("id", `${myLibrary.indexOf(book)}`);
         // console.log(typeof(book))
         for (const prop in book) {
             // console.log(`${prop}: ${book[prop]}`);
