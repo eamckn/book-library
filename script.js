@@ -29,11 +29,12 @@ function displayBooksInLibrary() {
     for (const book of myLibrary) {
         const newBook = document.createElement("div");
         newBook.className = "book";
-        newBook.setAttribute("id", `${myLibrary.indexOf(book)}`);
+        newBook.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
         const removeBookButton = document.createElement("button");
         removeBookButton.textContent = "Remove Book";
         newBook.appendChild(removeBookButton);
-        removeBookButton.setAttribute("id", `${myLibrary.indexOf(book)}`);
+        removeBookButton.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
+        removeBookButton.addEventListener("click", removeBook);
         // console.log(typeof(book))
         for (const prop in book) {
             // console.log(`${prop}: ${book[prop]}`);
@@ -52,6 +53,16 @@ function makeNewBook(event) {
     let read = document.querySelector("input[name = 'has_read']:checked").value;
 
     addBookToLibrary(title, author, pages, read);
+
+    event.preventDefault();
+}
+
+function removeBook(event) {
+    let index = Number(this.getAttribute("id"));
+    let bookToRemove = document.querySelector(`div#${index}`);
+    //console.log(bookToRemove);
+
+    //console.log(typeof(index));
 
     event.preventDefault();
 }
