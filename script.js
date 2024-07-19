@@ -58,9 +58,9 @@ function makeNewBook(event) {
 }
 
 function removeBook(event) {
-    let index = Number(this.getAttribute("id"));
-    let bookToRemove = document.querySelector(`div#${index}`);
-    //console.log(bookToRemove);
+    let index = "'" + this.getAttribute("data-index") + "'";
+    let bookToRemove = document.querySelector(`div[data-index= ${index}]`);
+    console.log(bookToRemove);
 
     //console.log(typeof(index));
 
