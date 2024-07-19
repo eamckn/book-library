@@ -60,11 +60,12 @@ function makeNewBook(event) {
 function removeBook(event) {
     let index = "'" + this.getAttribute("data-index") + "'";
     let bookToRemove = document.querySelector(`div[data-index= ${index}]`);
-    console.log(bookToRemove);
+
+    //console.log(bookToRemove);
+
+    bookToRemove.remove();
 
     //console.log(typeof(index));
-
-    event.preventDefault();
 }
 
 // Initialize some books in myLibrary
