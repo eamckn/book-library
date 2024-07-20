@@ -27,21 +27,31 @@ function addBookToLibrary(title, author, pages, read) {
 
 function displayBooksInLibrary() {
     for (const book of myLibrary) {
+        // Create div for each book with necessary attributes
         const newBook = document.createElement("div");
         newBook.className = "book";
         newBook.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
+        // Create removeBookButton for each div
         const removeBookButton = document.createElement("button");
-        removeBookButton.textContent = "Remove Book";
-        newBook.appendChild(removeBookButton);
         removeBookButton.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
         removeBookButton.addEventListener("click", removeBook);
-        // console.log(typeof(book))
+        removeBookButton.textContent = "Remove Book";
+        // Add it as a child to the newBook div
+        newBook.appendChild(removeBookButton);
+        // Display all properties and value on the book
         for (const prop in book) {
             // console.log(`${prop}: ${book[prop]}`);
             const newLine = document.createElement("p");
             newLine.textContent = `${prop}: ${book[prop]}`;
             newBook.appendChild(newLine);
         }
+        // Create toggleReadButton for each div
+        const toggleReadButton = document.createElement("button");
+        toggleReadButton.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
+        toggleReadButton.addEventListener("click", toggleRead);
+        toggleReadButton.textContent = "Toggle read status";
+        newBook.appendChild(toggleReadButton);
+
         libraryDisplay.appendChild(newBook);
     }
 }
@@ -66,6 +76,22 @@ function removeBook(event) {
     bookToRemove.remove();
 
     //console.log(typeof(index));
+}
+
+function toggleRead(event) {
+    let index = this.getAttribute("data-index");
+    // access this index in library, save into variable
+    let bookToToggle = myLibrary[index];
+    console.log(bookToToggle);
+    bookToToggle["read"] === "yes" ? bookToToggle["read"] = "no" :
+                                   bookToToggle["read"] = "yes";
+    console.log(bookToToggle);
+    // if read is yes, change to no, if not, change to yes
+    // add quotes to index to allow for DOM access
+    // select the div whose read button was just changed
+    // change its text content through loop
+
+    
 }
 
 // Initialize some books in myLibrary
