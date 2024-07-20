@@ -40,7 +40,6 @@ function displayBooksInLibrary() {
         newBook.appendChild(removeBookButton);
         // Display all properties and value on the book
         for (const prop in book) {
-            // console.log(`${prop}: ${book[prop]}`);
             const newLine = document.createElement("p");
             newLine.textContent = `${prop}: ${book[prop]}`;
             newBook.appendChild(newLine);
@@ -71,11 +70,7 @@ function removeBook(event) {
     let index = "'" + this.getAttribute("data-index") + "'";
     let bookToRemove = document.querySelector(`div[data-index= ${index}]`);
 
-    //console.log(bookToRemove);
-
     bookToRemove.remove();
-
-    //console.log(typeof(index));
 }
 
 function toggleRead(event) {
@@ -90,6 +85,7 @@ function toggleRead(event) {
     // add quotes to index to allow for DOM access
     // select the div whose read button was just changed
     // change its text content through loop
+
 
     
 }
