@@ -26,8 +26,7 @@ function addBookToLibrary(title, author, pages, read) {
     displayBook(newBook);
 }
 
-
-function displayBook(book) {
+function createBook(book) {
     const newBook = document.createElement("div");
     newBook.className = "book";
     newBook.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
@@ -51,38 +50,18 @@ function displayBook(book) {
         newLine.textContent = `${prop}: ${book[prop]}`;
         newBook.appendChild(newLine);
     }
+    return newBook;
+}
 
-    libraryDisplay.appendChild(newBook);
+function displayBook(book) {
+
+    libraryDisplay.appendChild(createBook(book));
 }
 
 function displayBooksInLibrary() {
     for (const book of myLibrary) {
-        // Create div for each book with necessary attributes
-        const newBook = document.createElement("div");
-        newBook.className = "book";
-        newBook.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
-        // Create removeBookButton for each div
-        const removeBookButton = document.createElement("button");
-        removeBookButton.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
-        removeBookButton.addEventListener("click", removeBook);
-        removeBookButton.textContent = "Remove Book";
-        // Add it as a child to the newBook div
-        newBook.appendChild(removeBookButton);
-        // Create toggleReadButton for each div
-        const toggleReadButton = document.createElement("button");
-        toggleReadButton.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
-        toggleReadButton.addEventListener("click", toggleRead);
-        toggleReadButton.textContent = "Toggle read status";
-        newBook.appendChild(toggleReadButton);
-        // Display all properties and value on the book
-        for (const prop in book) {
-            const newLine = document.createElement("p");
-            newLine.className = `${prop}`;
-            newLine.textContent = `${prop}: ${book[prop]}`;
-            newBook.appendChild(newLine);
-        }
 
-        libraryDisplay.appendChild(newBook);
+        libraryDisplay.appendChild(createBook(book));
     }
 }
 
