@@ -38,18 +38,19 @@ function displayBooksInLibrary() {
         removeBookButton.textContent = "Remove Book";
         // Add it as a child to the newBook div
         newBook.appendChild(removeBookButton);
-        // Display all properties and value on the book
-        for (const prop in book) {
-            const newLine = document.createElement("p");
-            newLine.textContent = `${prop}: ${book[prop]}`;
-            newBook.appendChild(newLine);
-        }
         // Create toggleReadButton for each div
         const toggleReadButton = document.createElement("button");
         toggleReadButton.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
         toggleReadButton.addEventListener("click", toggleRead);
         toggleReadButton.textContent = "Toggle read status";
         newBook.appendChild(toggleReadButton);
+        // Display all properties and value on the book
+        for (const prop in book) {
+            const newLine = document.createElement("p");
+            newLine.className = `${prop}`;
+            newLine.textContent = `${prop}: ${book[prop]}`;
+            newBook.appendChild(newLine);
+        }
 
         libraryDisplay.appendChild(newBook);
     }
@@ -68,26 +69,28 @@ function makeNewBook(event) {
 
 function removeBook(event) {
     let index = "'" + this.getAttribute("data-index") + "'";
-    let bookToRemove = document.querySelector(`div[data-index= ${index}]`);
+    let bookToRemove = document.querySelector(`div[data-inde x= ${index}]`);
 
     bookToRemove.remove();
 }
 
 function toggleRead(event) {
     let index = this.getAttribute("data-index");
+    let dataAttributeValue = "'" + index + "'";
+    let readStatus = document.querySelector(`div[data-index = ${dataAttributeValue}] p.read`);
+    console.log(readStatus);
     // access this index in library, save into variable
     let bookToToggle = myLibrary[index];
-    console.log(bookToToggle);
-    bookToToggle["read"] === "yes" ? bookToToggle["read"] = "no" :
-                                   bookToToggle["read"] = "yes";
-    console.log(bookToToggle);
-    // if read is yes, change to no, if not, change to yes
-    // add quotes to index to allow for DOM access
-    // select the div whose read button was just changed
-    // change its text content through loop
-
-
-    
+    //console.log(bookToToggle);
+    if (bookToToggle["read"] === "yes") {
+        bookToToggle["read"] = "no";
+        readStatus.textContent = "read: " + bookToToggle["read"];
+    }
+    else if (bookToToggle["read"] === "no") {
+        bookToToggle["read"] = "yes";
+        readStatus.textContent = "read: " + bookToToggle["read"];
+    }
+    //console.log(bookToToggle);
 }
 
 // Initialize some books in myLibrary
@@ -96,12 +99,3 @@ myLibrary.push(new Book("Justin's book", "Justin Lee", 350, "no"));
 myLibrary.push(new Book("Avery's book", "Avery Coreschi", 200, "yes"));
 
 displayBooksInLibrary();
-
-/* 
-For adding a remove book button for each book:
-1. Assign each book an ID that corresponds to its index in the array when it's made
-1. Create a button within the book div when it's added, same ID as its book
-2. Target it within the DOM
-2. Position it roughly where I want it
-3. Add an event listener to it to remove the book
-*/
