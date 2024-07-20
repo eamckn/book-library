@@ -54,13 +54,11 @@ function createBook(book) {
 }
 
 function displayBook(book) {
-
     libraryDisplay.appendChild(createBook(book));
 }
 
 function displayBooksInLibrary() {
     for (const book of myLibrary) {
-
         libraryDisplay.appendChild(createBook(book));
     }
 }
@@ -74,6 +72,11 @@ function makeNewBook(event) {
     let read = document.querySelector("input[name = 'has_read']:checked").value;
 
     addBookToLibrary(title, author, pages, read);
+    
+    document.querySelector("input#title").value = "";
+    document.querySelector("input#author").value = "";
+    document.querySelector("input#pages").value = "";
+    document.querySelector("input[name = 'has_read']:checked").checked = false;
 }
 
 function removeBook(event) {
@@ -87,7 +90,7 @@ function toggleRead(event) {
     let index = this.getAttribute("data-index");
     let dataAttributeValue = "'" + index + "'";
     let readStatus = document.querySelector(`div[data-index = ${dataAttributeValue}] p.read`);
-    console.log(readStatus);
+    //console.log(readStatus);
     // access this index in library, save into variable
     let bookToToggle = myLibrary[index];
     //console.log(bookToToggle);
@@ -99,7 +102,6 @@ function toggleRead(event) {
         bookToToggle["read"] = "yes";
         readStatus.textContent = "read: " + bookToToggle["read"];
     }
-    //console.log(bookToToggle);
 }
 
 // Initialize some books in myLibrary
