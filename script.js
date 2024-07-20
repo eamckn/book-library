@@ -1,12 +1,8 @@
 // JS for book library project
 
 // DOM element selectors
-
 const libraryDisplay = document.querySelector(".library-display-wrapper");
 const addBookButton = document.querySelector(".add-book");
-
-// Event listeners
-addBookButton.addEventListener("click", makeNewBook);
 
 // Initialize library, i.e an array of books
 const myLibrary = [];
@@ -18,51 +14,10 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
 }
+// Event listeners
+addBookButton.addEventListener("click", makeNewBook);
 
-// Function definitions
-function addBookToLibrary(title, author, pages, read) {
-    let newBook = new Book(title, author, pages, read);
-    myLibrary.push(newBook);
-    displayBook(newBook);
-}
-
-function createBook(book) {
-    const newBook = document.createElement("div");
-    newBook.className = "book";
-    newBook.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
-    // Create removeBookButton for each div
-    const removeBookButton = document.createElement("button");
-    removeBookButton.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
-    removeBookButton.addEventListener("click", removeBook);
-    removeBookButton.textContent = "Remove Book";
-    // Add it as a child to the newBook div
-    newBook.appendChild(removeBookButton);
-    // Create toggleReadButton for each div
-    const toggleReadButton = document.createElement("button");
-    toggleReadButton.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
-    toggleReadButton.addEventListener("click", toggleRead);
-    toggleReadButton.textContent = "Toggle read status";
-    newBook.appendChild(toggleReadButton);
-    // Display all properties and value on the book
-    for (const prop in book) {
-        const newLine = document.createElement("p");
-        newLine.className = `${prop}`;
-        newLine.textContent = `${prop}: ${book[prop]}`;
-        newBook.appendChild(newLine);
-    }
-    return newBook;
-}
-
-function displayBook(book) {
-    libraryDisplay.appendChild(createBook(book));
-}
-
-function displayBooksInLibrary() {
-    for (const book of myLibrary) {
-        libraryDisplay.appendChild(createBook(book));
-    }
-}
-
+// Custom event functions
 function makeNewBook(event) {
     event.preventDefault();
 
@@ -102,6 +57,50 @@ function toggleRead(event) {
         bookToToggle["read"] = "yes";
         readStatus.textContent = "read: " + bookToToggle["read"];
     }
+}
+
+// Function definitions
+function addBookToLibrary(title, author, pages, read) {
+    let newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
+    displayBook(newBook);
+}
+
+function displayBook(book) {
+    libraryDisplay.appendChild(createBook(book));
+}
+
+function displayBooksInLibrary() {
+    for (const book of myLibrary) {
+        libraryDisplay.appendChild(createBook(book));
+    }
+}
+
+function createBook(book) {
+    const newBook = document.createElement("div");
+    newBook.className = "book";
+    newBook.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
+    // Create removeBookButton for each div
+    const removeBookButton = document.createElement("button");
+    removeBookButton.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
+    removeBookButton.addEventListener("click", removeBook);
+    removeBookButton.textContent = "Remove Book";
+    // Add it as a child to the newBook div
+    newBook.appendChild(removeBookButton);
+    // Create toggleReadButton for each div
+    const toggleReadButton = document.createElement("button");
+    toggleReadButton.setAttribute("data-index", `${myLibrary.indexOf(book)}`);
+    toggleReadButton.addEventListener("click", toggleRead);
+    toggleReadButton.textContent = "Toggle read status";
+    newBook.appendChild(toggleReadButton);
+    // Display all properties and value on the book
+    for (const prop in book) {
+        const newLine = document.createElement("p");
+        newLine.className = `${prop}`;
+        newLine.textContent = `${prop}: ${book[prop]}`;
+        newBook.appendChild(newLine);
+    }
+    return newBook;
 }
 
 // Initialize some books in myLibrary
